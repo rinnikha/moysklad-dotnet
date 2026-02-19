@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MoySklad.Api.Tests/MoySklad.Api.Tests.csproj" />
+  <Project Path="MoySklad.Api/MoySklad.Api.csproj" />
+  <Project Path="MoySklad.Examples/MoySklad.Examples.csproj" />
+</Solution>
