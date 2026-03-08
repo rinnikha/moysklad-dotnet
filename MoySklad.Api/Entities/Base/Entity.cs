@@ -14,4 +14,13 @@ public abstract record Entity
     
     [JsonPropertyName("updated")]
     public DateTime? Updated { get; init; }
+
+    public string? GetIdFromMetaHref()
+    {
+        if (Meta?.Href == null)
+            return null;
+
+        var segments = Meta.Href.Split('/');
+        return segments.Length > 0 ? segments[^1] : null;
+    }
 }

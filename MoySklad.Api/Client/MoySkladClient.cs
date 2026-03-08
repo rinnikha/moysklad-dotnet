@@ -22,8 +22,12 @@ public class MoySkladClient : IDisposable
 
     // Documents
     public CustomerOrderRepository CustomerOrders { get; }
+    public SalesReturnRepository SalesReturns { get; }
     public DemandRepository Demands { get; }
+    public MoveRepository Moves { get; }
     public SupplyRepository Supplies { get; }
+    public EnterRepository Enters { get; }
+    public LossRepository Losses { get; }
     public InvoiceOutRepository InvoicesOut { get; }
     public InvoiceInRepository InvoicesIn { get; }
     public PurchaseOrderRepository PurchaseOrders { get; }
@@ -51,8 +55,12 @@ public class MoySkladClient : IDisposable
 
         // Documents
         CustomerOrders = new CustomerOrderRepository(_apiClient);
+        SalesReturns = new SalesReturnRepository(_apiClient);
         Demands = new DemandRepository(_apiClient);
+        Moves = new MoveRepository(_apiClient);
         Supplies = new SupplyRepository(_apiClient);
+        Enters = new EnterRepository(_apiClient);
+        Losses = new LossRepository(_apiClient);
         InvoicesOut = new InvoiceOutRepository(_apiClient);
         InvoicesIn = new InvoiceInRepository(_apiClient);
         PurchaseOrders = new PurchaseOrderRepository(_apiClient);

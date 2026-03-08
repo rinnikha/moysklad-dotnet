@@ -27,11 +27,3 @@ public class CustomerOrderRepository : TradeDocumentRepository<CustomerOrder>
         return await FindAllAsync(queryBuilder, cancellationToken);
     }
 }
-
-public class DemandRepository : TradeDocumentRepository<Demand>
-{
-    public DemandRepository(ApiClient apiClient)
-        : base(apiClient, "entity/demand")
-    {
-    }
-}

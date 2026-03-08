@@ -1,3 +1,6 @@
+using System.Globalization;
+using MoySklad.Api.Utils;
+
 namespace MoySklad.Api.Query;
 
 public class QueryBuilder
@@ -9,10 +12,34 @@ public class QueryBuilder
     private int? _offset;
     private string? _search;
 
+    private static readonly string MoySkladDateFormat = "yyyy-MM-dd HH:mm:ss.fff";
+
     public QueryBuilder Filter(string field, string op, object value)
     {
-        _filters.Add($"{field}{op}{value}");
+        var formattedValue = FormatValue(value);
+        _filters.Add($"{field}{op}{formattedValue}");
         return this;
+    }
+
+    private static string FormatValue(object value)
+    {
+        return value switch
+        {
+            DateTime dt => FormatDateTime(dt),
+            _ => value.ToString() ?? string.Empty
+        };
+    }
+
+    private static string FormatDateTime(DateTime dateTime)
+    {
+        // Convert to UTC first if needed, then to Moscow time
+        var utcTime = dateTime.Kind == DateTimeKind.Utc
+            ? dateTime
+            : dateTime.ToUniversalTime();
+
+        var moscowTime = utcTime.ToMoscowTime();
+
+        return moscowTime.ToString(MoySkladDateFormat, CultureInfo.InvariantCulture);
     }
 
     public QueryBuilder Eq(string field, object value) => Filter(field, "=", value);

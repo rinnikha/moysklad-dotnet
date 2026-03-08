@@ -36,4 +36,9 @@ public static class DateTimeExtensions
         var unspecified = DateTime.SpecifyKind(userDateTime, DateTimeKind.Unspecified);
         return TimeZoneInfo.ConvertTimeToUtc(unspecified, MoscowTimeZone);
     }
+
+    public static string ToMoySkladFormatString(this DateTime utcDateTime)
+    {
+        return utcDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+    }
 }
