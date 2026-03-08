@@ -12,6 +12,12 @@ CHECKLIST.md
 .vscode/
 .idea/
 
+# Build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+
 # Ignore all appsettings.*.json files except appsettings.json
 appsettings.*
 !appsettings.json
